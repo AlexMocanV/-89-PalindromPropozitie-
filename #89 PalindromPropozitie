@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+#include <fstream>
+#include <cstring>
+std::string nume="palindrom";
+std::ifstream fin(nume+".in");
+std::ofstream fout(nume+".out");
+void verifpal(std::string c,int st)
+{
+    if(st>=c.length()-1){
+        fout<<1<<'\n';return;
+    }
+    if(c[c.length()-1]==c[st]){
+        c.erase(c.end()-1);
+        verifpal(c,++st);
+    }
+    else{
+        //fout<<c[c.length()-1]<<c[st]<<' '<<c<<'\n';
+        fout<<0<<'\n';return;
+    }
+}
+int main()
+{
+    std::string n;
+    getline(fin,n);
+    int nou=stoi(n);
+    
+    for(int i=0;i<nou;i++)
+    {
+        std::string str;
+        getline(fin,str);
+        str.erase(remove_if(str.begin(), str.end(), isspace), str.end());
+        verifpal(str,0);
+    }
+    return 0;
+}
